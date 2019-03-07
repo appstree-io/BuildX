@@ -28,6 +28,9 @@ header{
     color:#3b404f;
     font-size: 14px;
 }
+.navbar-light .navbar-nav .nav-link:hover{
+    color: #fab702;
+}
 .navbar-expand-md .navbar-nav .nav-link {
     padding-right: 15px;
     padding-left: 15px;
@@ -402,10 +405,24 @@ footer{
     background-color: #4c5b6d;
 }
 @media (max-width: 500px){
- 
+    .top-bg h1 {
+        font-size: 36px;
+    }
+    .top-bg {
+        padding: 40px 0;
+    }
 }
 
 @media (max-width: 991px){
-
+    .about-feature{
+        padding: 24px 0;
+    }
+    .about-left {
+        float: left;
+        width: 100%;
+        background: url(../images/Buildx-preview_09.png);
+        height: 540px;
+        background-size: cover;
+    }
   
 }
