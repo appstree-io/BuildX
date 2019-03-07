@@ -219,17 +219,24 @@ header{
     color: #6d7396;
     font-size: 14px;
 }
-.listodisotops{
-    text-align: center;
-    padding: 2rem 0;
-}
-.listodisotops li{
-    display: inline-block;
-}
-.listodisotops li a{
-    padding: 5px 8px;
+
+
+.button-group .button{
+    background: transparent;
+    border: 0;
+    padding: 0px 0px;
+    margin: 0 8px;
     color: #3b404f;
+    border-bottom: 1px solid transparent;
 }
+.button-group .button:hover{
+    border-bottom: 1px solid #fab702;
+    color: #fab702;
+}
+.button-group .button:focus{
+    outline: 0;
+}
+
 .padding-right{
     padding-right: 2px;
     padding-left: 0;
@@ -404,6 +411,9 @@ footer{
     width: 100%;
     background-color: #4c5b6d;
 }
+
+
+
 @media (max-width: 500px){
     .top-bg h1 {
         font-size: 36px;
@@ -424,5 +434,7 @@ footer{
         height: 540px;
         background-size: cover;
     }
-  
+    .py-4-5{
+        padding: 0 !important;
+    }
 }

@@ -194,34 +194,42 @@
     <div class="container-fluid">
       <h1>Featured Works</h1>
       <p>Lorem ipsum dolor sit amet, sed dicunt oporteat cu, laboramus definiebas cum et. Duo id omnis<br> persequeris neglegentur, facete commodo ea usu, possit lucilius sed ei. Esse efficiendi scripserit eos ex.<br> Sea utamur iisque salutatus id.Mel autem animal.      </p>
-      <ul class="listodisotops">
-        <li><a href="#">All</a></li>
-        <li><a href="#">Green Building</a></li>
-        <li><a href="#">Healthcare</a></li>
-        <li><a href="#">Interior Design</a></li>
-        <li><a href="#">Office</a></li>
-      </ul>
-      <div class="">
-        <div class="row">
-          <div class="col-md-4 padding-right">
-            <img src="images/Buildx-preview_12.png" class="img-fluid borderofbottom">
+      <!-- <ul class="listodisotops">
+        <li class="ilters-button-group"><a type="button" class="is-checked" data-filter="*">All</a></li>
+        <li class="ilters-button-group"><a type="button"  data-filter=".GreenBuilding">Green Building</a></li>
+        <li class="ilters-button-group"><a type="button" data-filter=".Interior">Healthcare</a></li>
+        <li class="ilters-button-group"><a type="button" data-filter=".Healthcare, .Healthcarene-earth">Interior Design</a></li>
+        <li class="ilters-button-group"><a type="button" data-filter=":not(.Interior)">Office</a></li>
+      </ul> -->
+      <div class="text-center">
+          <div class="py-5 button-group filters-button-group">
+            <button class="button is-checked" data-filter="*">All</button>
+            <button class="button" data-filter=".GreenBuilding">Green Building</button>
+            <button class="button" data-filter=".Healthcare">Healthcare</button>
+            <button class="button" data-filter=".Interior">Interior Design</button>
+            <button class="button" data-filter=".Office">Office</button>
           </div>
-          <div class="col-md-4 padding-1">
-              <img src="images/Buildx-preview_15.png" class="img-fluid borderofimg">
+          
+          <div class="row grid">
+            <div class="col-md-4 padding-right element-item Healthcare Interior GreenBuilding " data-category="Interior">
+                <img src="images/Buildx-preview_12.png" class="img-fluid borderofbottom">
+            </div>
+            <div class="col-md-4 padding-1 element-item GreenBuildingloid " data-category="GreenBuildingloid">
+                <img src="images/Buildx-preview_15.png" class="img-fluid borderofimg">
+            </div>
+            <div class="col-md-4 padding-left element-item Office " data-category="Office">
+                <img src="images/Buildx-preview_17.png" class="img-fluid borderofbottom">
+            </div>
+            <div class="col-md-4 padding-right element-item Office  " data-category="Office">
+                <img src="images/Buildx-preview_20.png" class="img-fluid borderofbottom">
+            </div>
+            <div class="col-md-4 padding-1 element-item Interior GreenBuilding " data-category="Interior">
+                <img src="images/Buildx-preview_15.png" class="img-fluid borderofimg">
+            </div>
+            <div class="col-md-4 padding-left element-item Healthcare GreenBuilding " data-category="Healthcare">
+                <img src="images/Buildx-preview_22.png" class="img-fluid borderofbottom">
+            </div>
           </div>
-          <div class="col-md-4 padding-left">
-              <img src="images/Buildx-preview_17.png" class="img-fluid borderofbottom">
-          </div>
-          <div class="col-md-4 padding-right">
-            <img src="images/Buildx-preview_20.png" class="img-fluid borderofbottom">
-          </div>
-          <div class="col-md-4 padding-1">
-              <img src="images/Buildx-preview_15.png" class="img-fluid borderofimg">
-          </div>
-          <div class="col-md-4 padding-left">
-              <img src="images/Buildx-preview_22.png" class="img-fluid borderofbottom">
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -457,6 +465,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <script src="js/bootstrap.min.js" ></script>
+  <script src="https://npmcdn.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
   <script>
       (function ($) {
         $.fn.countTo = function (options) {
@@ -582,6 +591,44 @@
             } // End if
           });
         });
+    </script>
+    <script>
+    // external js: isotope.pkgd.js
+
+      // init Isotope
+      var $grid = $('.grid').isotope({
+        itemSelector: '.element-item',
+        layoutMode: 'fitRows'
+      });
+      // filter functions
+      var filterFns = {
+        // show if number is greater than 50
+        numberGreaterThan50: function() {
+          var number = $(this).find('.number').text();
+          return parseInt( number, 10 ) > 50;
+        },
+        // show if name ends with -ium
+        ium: function() {
+          var name = $(this).find('.name').text();
+          return name.match( /ium$/ );
+        }
+      };
+      // bind filter button click
+      $('.filters-button-group').on( 'click', 'button', function() {
+        var filterValue = $( this ).attr('data-filter');
+        // use filterFn if matches value
+        filterValue = filterFns[ filterValue ] || filterValue;
+        $grid.isotope({ filter: filterValue });
+      });
+      // change is-checked class on buttons
+      $('.button-group').each( function( i, buttonGroup ) {
+        var $buttonGroup = $( buttonGroup );
+        $buttonGroup.on( 'click', 'button', function() {
+          $buttonGroup.find('.is-checked').removeClass('is-checked');
+          $( this ).addClass('is-checked');
+        });
+      });
+
     </script>
 </body>
 </html>
