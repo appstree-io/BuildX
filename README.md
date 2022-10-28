@@ -1,7 +1,7 @@
 # BuildX
   This template for building website.
   
-# [Demo](https://suavis-technologies.github.io/BuildX/) 
+# [CHECKOUT OUT DEMO](https://appstree-io.github.io/BuildX/) 
  
 # Desktop
 
